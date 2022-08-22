@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oxanium', cursive;
+}
+
+body {
+    text-align: center;
+    background: linear-gradient(to bottom, #6ab7f5, #fff);
+    min-height: 100vh; /* p o linear-gradient se estender pela pág. toda */
+
+}
+
+main {
+    display: inline-block; /* usado p a tag main seguir os tamanhos d imagem*/
+    margin-top: 2%;
+    padding: 15px; /* p a imagem ñ ficar colada nas bordas da pág. em telas pequenas */
+    position: relative; /* p os elemts de dentro da pokedex ficarem lá dentro */
+}
+
+.pokedex {
+    width: 100%; /* p ocupar todo o espaço disponível */
+    max-width: 425px; /* p prevenir que o layout fique mudando */
+}
+
+.pokemon__image {
+    position: absolute; /* ñ altera o comportamento da pokedex */
+    bottom: 55%; /* 55% é ref. ao tamanho do main(pokedex) */
+    left: 50%; /* 50% é ref. ao tamanho do main(pokedex) */
+    transform: translate(-63%, 20%); /* p o pokemon ficar centralizado .. (x, y) --> -63%(esquerda), 20%(direita) */
+}
