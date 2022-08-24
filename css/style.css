@@ -11,11 +11,10 @@ body {
     text-align: center;
     background: linear-gradient(to bottom, #6ab7f5, #fff);
     min-height: 100vh; /* p o linear-gradient se estender pela pág. toda */
-
 }
 
 main {
-    display: inline-block; /* usado p a tag main seguir os tamanhos d imagem*/
+    display: inline-block; /* p a tag main seguir os tamanhos d imagem*/
     margin-top: 2%;
     padding: 15px; /* p a imagem ñ ficar colada nas bordas da pág. em telas pequenas */
     position: relative; /* p os elemts de dentro da pokedex ficarem lá dentro */
@@ -27,8 +26,72 @@ main {
 }
 
 .pokemon__image {
-    position: absolute; /* ñ altera o comportamento da pokedex */
+    position: absolute; /* ñ altera o comportamento da pokedex e mantém a img dentro */
     bottom: 55%; /* 55% é ref. ao tamanho do main(pokedex) */
     left: 50%; /* 50% é ref. ao tamanho do main(pokedex) */
     transform: translate(-63%, 20%); /* p o pokemon ficar centralizado .. (x, y) --> -63%(esquerda), 20%(direita) */
+    height: 18%; /* altura fixa p todos pokemons */
+}
+
+.pokemon__data {
+    position: absolute; /* p mexer c a posição do nome e nº do pokemon, mantendo dentro da pokedex */
+    font-weight: 600;
+    color: #aaa;
+    top: 54.5%; /* leva p baixo o nome */
+    right: 27%; /* leva p o meio o nome */
+    font-size: clamp(8px, 5vw, 25px); /* clamp(min, desejável, max) --> p o nome diminuir/aumentar de acordo com o tam. da tela */
+}
+
+.pokemon__name {
+    color: #3a444d;
+    text-transform: capitalize; /* deixa a 1ª letra do nome em maiúsculo */
+}
+
+.form{
+    position: absolute; /* p mexer c a posição do input, mantendo dentro da pokedex */
+    /* background-color: red; só p visualizar melhor a ocupação do input na pokedex */
+    width: 65%; /* p ocupar 65% da tela e posteriormente centralizar de fato o input na pokedex*/
+    top: 63%; /* leva p baixo o input */
+    left: 13.5%; /* arrasta p direita o input */
+}
+
+.input__search {
+    width: 100%; /* p ocupar 100% da área definida p o form */
+    padding: 4%; /* aumenta o espaçamento dentro do input */
+    outline: none; /* tira a borda q é colocada automaticamente ao redor do input */
+    border: 2px solid #333;
+    border-radius: 5px;
+    font-weight: 600; /* dá uma escurecida na fonte */
+    color: #3a444d;
+    font-size: clamp(8px, 5vw, 1rem); /* clamp(min, desejável, max) --> p a fonte diminuir/aumentar de acordo com o tam. da tela */
+    box-shadow: -3px 4px 0 #888, -5px 7px 0 #333; /* 1º (eixo x) - 2º (eixo y) - 3º (tamanho) e 4º (cor) da sombra ...
+                                                            a mesma coisa para a 2ª sombra colocada após a vírgula */
+}
+
+.buttons {
+    position: absolute; /* p mexer c a posição dos botões, mantendo-os dentro da pokedex */
+    bottom: 10%; /* leva p baixo os botões */
+    left: 50%; /* arrasta p direita os botões */
+    width: 65%; /* p ocupar 65% da tela e posteriormente centralizar de fato os botões na pokedex*/
+    transform: translate(-57%, 0); /* x e y --> e centraliza os botões */
+    display: flex; /* p manter um botão ao lado do outro */
+    gap: 20px; /* espaçamento entre os botões */
+}
+
+.button {
+    width: 50%; /* p dividir o espaço entre eles */
+    padding: 4%; /* aumenta o espaçamento dentro dos botões */
+    border: 3px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem); /* clamp(min, desejável, max) --> p a fonte diminuir/aumentar de acordo com o tam. da tela */
+    font-weight: 600; /* dá uma escurecida na fonte */
+    color: white;
+    background-color: #444;
+    box-shadow: -2px 3px 0 #222, -4px 6px 0 #000; /* mesmo esquema de sombras do input__search */
+}
+
+/* efeitos dos botões */
+.button:active{
+    box-shadow: inset -4px 4px 0 #222; /* sombra interna p simular um efeito de clique no botão */
+    font-size: 0.9rem;/* diminui a fonte ao clicar no botão, p dar um efeito bem realista de clique */
 }
