@@ -52,17 +52,30 @@ form.addEventListener('submit', function(event){
     event.preventDefault();
     // o preventDefault previne as configurações padrões do evento(event) p q possamos manusear o evento da maneira desejada
     // com isso já é possível resgatar o que for digitado no input
-
+    
+    
     renderPokemon(input.value); // p renderizar o que for digitado no input 
+
+    contador = parseInt(input.value);
 });
 
 buttonPrev.addEventListener("click", () => {
-    contador -= 1;
+    if(contador == 1) {
+        contador = 649;
+    } else {
+        contador -= 1;
+    }    
+    
     renderPokemon(contador.toString());
 });
 
 buttonNext.addEventListener("click", () => {
-    contador += 1;
+    if(contador == 649) {
+        contador = 1;
+    } else {
+        contador += 1;
+    }    
+    
     renderPokemon(contador.toString())
 });
 
