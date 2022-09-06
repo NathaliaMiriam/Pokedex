@@ -6,11 +6,13 @@ const input = document.querySelector('.input__search');
 const buttonPrev = document.querySelector('.btn-prev');
 const buttonNext = document.querySelector('.btn-next');
 
+// armazena o nº inicial do Pokemon p quando a pag. for renderizada/atualizada
+let searchPokemon = 1;
 
 // função p fazer a busca dos pokemons na API 
     // fetch = utiliza o método GET do protocolo CRUD - busca os dados do pokemon na API ... async = p função assíncrona
 const fetchPokemon = async (pokemon) => {
-    const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`); // toLowerCase() = passa todos os caracteres do input p minusculo
+    const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`); 
     /* APIResponse = resposta da API na var(const) 
         await = p aguardar o término da chamada (do fetch), que é assíncrono
           assíncrono = algo que ñ acontece de maneira imediata, ou seja, devemos esperar 
@@ -32,21 +34,23 @@ const renderPokemon = async (pokemon) => {
 
     const dados = await fetchPokemon(pokemon); // recebe os dados do pokemon a ser renderizado na tela
 
-    // checa se voltou algum dado de pokemon ou ñ (caso o pokemon ñ seja encontrado)
+    // checa se voltou algum dado de pokemon ou ñ (caso o pokemon ñ seja encontrado) ... se for encontrado será renderizado na tela
    if(dados) {
         pokemonName.innerHTML = dados['name'];
         pokemonNumber.innerHTML = dados['id'];
         pokemonImage.src = dados['sprites']['versions']['generation-v']['black-white']['animated']['front_default'];
-        input.value = ''; // limpa o input após o clique do Enter
+        pokemonImage.style.display = "block"; // mostra a imagem quando o pokemon for encontrado
+        input.value = ''; // limpa o input após o Enter
+        searchPokemon = dados.id; // p seguir ou voltar ao pokemon da sequencia
     } else {
         pokemonName.innerHTML = "Not Found :c"; // mensagem p quando ñ for encontrado um pokemon
         pokemonNumber.innerHTML = ""; // limpa o nº quando o pokemon ñ for encontrado
-        pokemonImage.src = "";
+        pokemonImage.style.display = "none"; // esconde a imagem quando o pokemon ñ for encontrado
     }
 }
 
 // adiciona ao form o evento de submit, ou seja, ao enviar o form uma função será executada
-form.addEventListener('submit', async function(event){
+form.addEventListener('submit', function(event){
     
     // por ser um form possui um comportamento padrão que precisará ser bloqueado ...
     event.preventDefault();
@@ -54,34 +58,32 @@ form.addEventListener('submit', async function(event){
     // com isso já é possível resgatar o que for digitado no input
     
     
-    await renderPokemon(input.value); // p renderizar o que for digitado no input 
-
-    contador = parseInt(pokemonNumber.innerHTML);
+    renderPokemon(input.value.toLowerCase()); // p renderizar o que for digitado no input e com caracteres minusculos
 });
 
+// renderiza p o pokemon anterior
 buttonPrev.addEventListener("click", () => {
-    if(contador == 1) {
-        contador = 649;
+    if(searchPokemon == 1) { 
+        searchPokemon = 649;       
     } else {
-        contador -= 1;
-    }    
+        searchPokemon -= 1;
+    }   
     
-    renderPokemon(contador.toString());
+    renderPokemon(searchPokemon);
 });
 
+// renderiza para o próximo pokemon
 buttonNext.addEventListener("click", () => {
-    if(contador == 649) {
-        contador = 1;
+    if(searchPokemon >= 649) {
+        searchPokemon = 1;
     } else {
-        contador += 1;
+        searchPokemon += 1;
     }    
     
-    renderPokemon(contador.toString())
+    renderPokemon(searchPokemon);
 });
 
-let contador = 1;
-
-renderPokemon(contador.toString()); // aparecerá sempre o pokemon de nº 1 quando a pag. for renderizada/atualizada
+renderPokemon(searchPokemon); // aparecerá sempre o pokemon de nº 1 quando a pag. for renderizada/atualizada
 
 
 
