@@ -46,7 +46,7 @@ const renderPokemon = async (pokemon) => {
 }
 
 // adiciona ao form o evento de submit, ou seja, ao enviar o form uma função será executada
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', async function(event){
     
     // por ser um form possui um comportamento padrão que precisará ser bloqueado ...
     event.preventDefault();
@@ -54,9 +54,9 @@ form.addEventListener('submit', function(event){
     // com isso já é possível resgatar o que for digitado no input
     
     
-    renderPokemon(input.value); // p renderizar o que for digitado no input 
+    await renderPokemon(input.value); // p renderizar o que for digitado no input 
 
-    contador = parseInt(input.value);
+    contador = parseInt(pokemonNumber.innerHTML);
 });
 
 buttonPrev.addEventListener("click", () => {
