@@ -70,7 +70,7 @@ main {
 
 .buttons {
     position: absolute; /* p mexer c a posição dos botões, mantendo-os dentro da pokedex */
-    bottom: 10%; /* leva p baixo os botões */
+    bottom: 19%; /* leva p baixo os botões */
     left: 50%; /* arrasta p direita os botões */
     width: 65%; /* p ocupar 65% da tela e posteriormente centralizar de fato os botões na pokedex*/
     transform: translate(-57%, 0); /* x e y --> e centraliza os botões */
@@ -91,7 +91,32 @@ main {
 }
 
 /* efeitos dos botões */
-.button:active{
+.button:active {
     box-shadow: inset -4px 4px 0 #222; /* sombra interna p simular um efeito de clique no botão */
     font-size: 0.9rem;/* diminui a fonte ao clicar no botão, p dar um efeito bem realista de clique */
+}
+
+
+/* aqui começa a nossa parte do projeto */
+.buttons-cards {
+    position: absolute; /* p mexer c a posição dos botões, mantendo-os dentro da pokedex */
+    bottom: 8.5%; /* leva p baixo os botões */
+    left: 50%; /* arrasta p direita os botões */
+    width: 65%; /* p ocupar 65% da tela e posteriormente centralizar de fato os botões na pokedex*/
+    transform: translate(-57%, 0); /* x e y --> e centraliza os botões */
+    display: flex; /* p manter um botão ao lado do outro */
+    gap: 10px; /* espaçamento entre os botões */
+}
+
+.generation {
+    width: 50%; /* p dividir o espaço entre eles */
+    padding: 2%; /* aumenta o espaçamento dentro dos botões */
+    border: 3px solid #000;
+    border-radius: 5px;
+    font-size: clamp(8px, 5vw, 1rem); /* clamp(min, desejável, max) --> p a fonte diminuir/aumentar de acordo com o tam. da tela */
+    font-weight: 600; /* dá uma escurecida na fonte */
+    color: white;
+    background-color: #4682B4;
+    box-shadow: -2px 3px 0 #00008B; /* mesmo esquema de sombras do input__search */
+    text-decoration: none;
 }
