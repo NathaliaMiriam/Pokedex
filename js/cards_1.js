@@ -30,27 +30,12 @@ const insertPokemonIntoPage = pokemons => {
 }
 
          
-//const pokemonPromises = generatePokemonPromises();        
+//const pokemonPromises = generatePokemonPromises(); 
+       
 
 Promise.all(pokemonPromises)
     .then(generateHTML)    
     .then(insertPokemonIntoPage)
-
-const types = [
-    {
-        "name": "grass",
-        "url": ""
-    },
-    {
-        "name": "poison",
-        "idade": ""
-    }
-];
-
-const pokeTypes = types.map(type => type.name);
-
-console.log(pokeTypes);
-
 
 
 // função para buscar a imagem dos pokemons
